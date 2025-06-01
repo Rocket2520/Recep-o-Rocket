@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro e Check-in - Ministério Infantil</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      margin-bottom: 2rem;
+    }
+    label {
+      display: block;
+      margin: 0.5rem 0 0.2rem;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0.7rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .section {
+      margin-bottom: 3rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Ministério Infantil - Cadastro e Check-in</h2>
+
+    <div class="section">
+      <h3>📝 Cadastro de Criança</h3>
+      <form id="formCadastro">
+        <label for="nomeCadastro">Nome da criança</label>
+        <input type="text" id="nomeCadastro" required />
+
+        <label for="responsavel">Nome do responsável</label>
+        <input type="text" id="responsavel" required />
+        
+        <label for="cpf">CPF do responsável</label>
+        <input type="text" id="cpf" required pattern="\d{11}" title="Digite 11 números sem pontos ou traços" />
+
+        <label for="telefone">Telefone do responsável</label>
+        <input type="tel" id="telefone" required pattern="[0-9\s\-\+\(\)]{8,}" title="Digite um telefone válido" />
+
+        <label for="idade">Idade</label>
+        <input type="number" id="idade" required min="0" />
+
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h3>✅ Check-in</h3>
+      <form id="formCheckin">
+        <label for="nomeCheckin">Nome da criança</label>
+        <input type="text" id="nomeCheckin" required />
+
+        <button type="submit">Fazer Check-in</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h3>📋 Lista de Presença</h3>
+      <ul id="listaPresenca"></ul>
+    </div>
+  </div>
+
+  <script>
+    // Função para salvar dados no localStorage
+    function salvarDados(nomeChave, dados) {
+      localStorage.setItem(nomeChave, JSON.stringify(dados));
+    }
+
+    // Função para carregar dados do localStorage
+    function carregarDados(nomeChave) {
+      const dados
